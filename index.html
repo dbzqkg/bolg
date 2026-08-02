@@ -6,24 +6,6 @@
   <title>宫商角徵的个人博客</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="data:," />
-  <!-- 自动版本检测：发现更新则强制刷新 -->
-  <script>
-    (function () {
-      var vKey = 'blog-version';
-      var last = localStorage.getItem(vKey);
-      var url = 'version.json?t=' + Date.now();
-      fetch(url, { cache: 'no-store' })
-        .then(function (r) { return r.json(); })
-        .then(function (data) {
-          var v = data.version;
-          if (last && String(v) !== last) {
-            location.reload(true);
-          }
-          localStorage.setItem(vKey, String(v));
-        })
-        .catch(function () {});
-    })();
-  </script>
 </head>
 <body>
   <!-- 波普漫画风开始页面 -->

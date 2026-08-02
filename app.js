@@ -337,6 +337,10 @@
         imgEl.src = resolvePath(pageData.image);
         imgEl.alt = pageData.title;
         imgWrap.style.display = 'block';
+        var scale = pageData.scale || 1.2;
+        var ox = pageData.offsetX || 0;
+        var oy = pageData.offsetY || 0;
+        imgWrap.style.transform = 'translateY(-50%) scale(' + scale + ') translate(' + ox + 'px,' + oy + 'px)';
       } else {
         imgWrap.style.display = 'none';
       }

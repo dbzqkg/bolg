@@ -13,7 +13,7 @@ const BLOG_CONFIG = {
   // label/link/image 留空 → 缺省值；angle: 0°=正前, 90°=正右, 180°=正后, 270°=正左
   menuItems: [
     { label: '文章', link: '', image: '', angle: 180, page: 'articles' },
-    { label: '音乐', link: '', image: '', angle: 90, page: 'music' },
+    { label: '休闲', link: '', image: '', angle: 90, page: 'leisure' },
     { label: '关于', link: '', image: '', angle: 0, page: 'about' },
     { label: '更多', link: '', image: '', angle: 270, page: 'more' }
   ],
@@ -25,10 +25,13 @@ const BLOG_CONFIG = {
       subtitle: '阅读与记录',
       image: 'img/teto-read.png',
     },
-    music: {
-      title: '音乐',
-      subtitle: '聆听与分享',
-      image: '',
+    leisure: {
+      title: '休闲',
+      subtitle: '放松与自由',
+      image: 'img/teto-free.png',
+      scale: 0.75,
+      offsetX: 40,
+      offsetY: 30,
     },
     about: {
       title: '关于',

@@ -30,7 +30,7 @@ const BLOG_CONFIG = {
       subtitle: '放松与自由',
       image: 'img/teto-free.png',
       scale: 0.75,
-      offsetX: 40,
+      offsetX: 230,
       offsetY: 30,
     },
     about: {

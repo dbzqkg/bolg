@@ -346,6 +346,7 @@
       }
 
       overlay.style.display = 'block';
+      localStorage.setItem('blog-current-page', pageKey);
       requestAnimationFrame(function () {
         overlay.classList.add('open');
       });
@@ -353,10 +354,26 @@
 
     function closePage() {
       overlay.classList.remove('open');
+      localStorage.removeItem('blog-current-page');
       setTimeout(function () { overlay.style.display = 'none'; }, 300);
     }
 
     closeBtn.addEventListener('click', closePage);
+
+    // 刷新恢复上次页面
+    var savedPage = localStorage.getItem('blog-current-page');
+    if (savedPage && pagesCfg[savedPage]) {
+      // 跳过开始页面动画，直接进入
+      var landing = document.getElementById('landing');
+      if (landing) {
+        landing.style.display = 'none';
+        gsap.set('#scene', { opacity: 1 });
+        gsap.set('#center-image', { opacity: 1 });
+        gsap.set('#info-toggle', { opacity: 1 });
+        gsap.set('.ring-item .card', { opacity: 1 });
+      }
+      openPage(savedPage);
+    }
 
     // 暴露给外部调用
     window.openPage = openPage;

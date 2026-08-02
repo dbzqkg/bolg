@@ -346,20 +346,14 @@
     var touchStartY = 0;
     var isSwiping = false;
 
-    sceneEl.addEventListener('touchstart', function (e) {
-      var touch = e.touches[0];
-      if (!isMouseOnRing(touch.clientX, touch.clientY)) return;
+    document.addEventListener('touchstart', function (e) {
       if (e.target.closest('#info-panel') || e.target.closest('.overlay-close') || e.target.closest('#info-toggle')) return;
-      touchStartX = touch.clientX;
-      touchStartY = touch.clientY;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
       isSwiping = true;
     }, { passive: true });
 
-    sceneEl.addEventListener('touchmove', function (e) {
-      if (!isSwiping) return;
-    }, { passive: true });
-
-    sceneEl.addEventListener('touchend', function (e) {
+    document.addEventListener('touchend', function (e) {
       if (!isSwiping) return;
       isSwiping = false;
 
@@ -367,7 +361,6 @@
       var dx = touch.clientX - touchStartX;
       var dy = touch.clientY - touchStartY;
 
-      // 水平滑动为主，忽略纯垂直滑动
       if (Math.abs(dx) < 30) return;
       if (Math.abs(dy) > Math.abs(dx) * 1.5) return;
 

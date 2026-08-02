@@ -404,80 +404,84 @@ html, body {
 /* ---- 手机端响应式适配 ---- */
 /* ======================================== */
 @media (max-width: 768px) {
-  /* 3D 环选项卡片缩小 */
+  /* 选项卡片：缩小一半（桌面 210×63 → 手机 105×32） */
   .ring-item .card {
-    --item-w: 160px;
-    --item-h: 50px;
-    width: var(--item-w, 160px);
-    height: var(--item-h, 50px);
-    border-width: 3px;
-    box-shadow: 6px 6px 0 #000;
-    padding: 6px 16px;
-    gap: 8px;
+    --item-w: 110px;
+    --item-h: 34px;
+    width: var(--item-w, 110px);
+    height: var(--item-h, 34px);
+    border-width: 2.5px;
+    box-shadow: 5px 5px 0 #000;
+    padding: 4px 12px;
+    gap: 6px;
   }
   .ring-item .card img {
-    height: 30px; width: 30px;
-    border-width: 2px;
+    /* 卡片图标缩小到 60%：41 → 24 */
+    height: 24px; width: 24px;
+    border-width: 1.5px;
   }
   .ring-item .card .label {
-    font-size: 16px;
-    letter-spacing: 3px;
-    -webkit-text-stroke: 0.5px #000;
+    font-size: 12px;
+    letter-spacing: 2px;
+    -webkit-text-stroke: 0.4px #000;
   }
 
   /* 触屏 hover 高亮替代方案 */
   #scene.on-ring .ring-item[data-side="front"] .card,
   .ring-item .card.touch-active {
-    box-shadow: 12px 12px 0 #000;
+    box-shadow: 8px 8px 0 #000;
     transform: skewX(-12deg) scale(1.08);
   }
 
-  /* 中心图片缩小 */
+  /* 中心图片：缩小一半 */
   #center-image img {
-    max-width: 85vw;
-    max-height: 50vh;
+    max-width: 50vw;
+    max-height: 35vh;
   }
   #center-image .placeholder {
-    width: 85vw;
-    height: auto;
-    padding: 20px;
+    /* 背景缩小 20% */
+    width: 650px;
+    height: 905px;
+    transform: scale(0.8);
+    transform-origin: center center;
   }
 
-  /* 右下角按钮缩小 */
+  /* 右下角按钮缩小到 60% */
   #info-toggle {
-    bottom: 16px;
-    right: 16px;
-    width: 40px;
-    height: 40px;
-    border-width: 3px;
+    bottom: 12px;
+    right: 12px;
+    width: 30px;
+    height: 30px;
+    border-width: 2px;
     box-shadow: 3px 3px 0 #000;
   }
   #info-toggle .toggle-plus {
-    font-size: 22px;
+    font-size: 18px;
   }
 
-  /* 信息面板适配 */
+  /* 信息面板缩小 */
   #info-panel {
-    width: calc(100vw - 32px);
-    max-height: 70vh;
-    left: 16px !important;
-    right: 16px !important;
-    bottom: 16px !important;
+    width: calc(100vw - 24px);
+    max-height: 60vh;
+    left: 12px !important;
+    right: 12px !important;
+    bottom: 12px !important;
     top: auto !important;
     border-width: 3px;
-    box-shadow: 8px 8px 0 #000;
-    padding: 20px 16px 16px;
+    box-shadow: 6px 6px 0 #000;
+    padding: 16px 12px 12px;
   }
   .panel-icon {
-    width: 44px;
-    height: 44px;
+    /* 缩小到 60% */
+    width: 34px;
+    height: 34px;
   }
   .panel-title {
-    font-size: 16px;
+    font-size: 14px;
     letter-spacing: 2px;
   }
   .panel-content {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   /* 覆盖层改为上下堆叠布局 */
@@ -500,7 +504,7 @@ html, body {
     right: auto;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -10%) scale(1);
+    transform: translate(-50%, -10%) scale(0.6);
     max-height: 55vh;
     text-align: center;
   }
@@ -540,32 +544,32 @@ html, body {
   }
 }
 
-/* 小屏手机进一步优化 */
+/* 小屏手机进一步缩小 */
 @media (max-width: 480px) {
   .ring-item .card {
-    --item-w: 130px;
-    --item-h: 42px;
-    width: var(--item-w, 130px);
-    height: var(--item-h, 42px);
-    border-width: 2.5px;
-    box-shadow: 4px 4px 0 #000;
-    padding: 4px 12px;
-    gap: 6px;
+    --item-w: 100px;
+    --item-h: 30px;
+    width: var(--item-w, 100px);
+    height: var(--item-h, 30px);
+    border-width: 2px;
+    box-shadow: 3px 3px 0 #000;
+    padding: 3px 8px;
+    gap: 5px;
   }
   .ring-item .card img {
-    height: 24px;
-    width: 24px;
+    height: 20px;
+    width: 20px;
     border-width: 1.5px;
   }
   .ring-item .card .label {
-    font-size: 13px;
-    letter-spacing: 2px;
-    -webkit-text-stroke: 0.4px #000;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    -webkit-text-stroke: 0.3px #000;
   }
 
   #center-image img {
-    max-width: 90vw;
-    max-height: 40vh;
+    max-width: 45vw;
+    max-height: 30vh;
   }
 
   .overlay-title {

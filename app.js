@@ -10,7 +10,7 @@
     if (!landing) return;
     var entered = false;
 
-    landing.addEventListener('click', function () {
+    function doEnter() {
       if (entered) return;
       entered = true;
 
@@ -64,6 +64,12 @@
         });
       }
       animateCards();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === ' ' || e.key === 'Enter') {
+        doEnter();
+      }
     });
   })();
 
@@ -317,40 +323,7 @@
     } else if (e.key === 'ArrowRight') {
       e.preventDefault();
       snapRotate(currentRotation + 90);
-    } else if (e.key === ' ' || e.key === 'Enter') {
-      e.preventDefault();
-      // 最高优先级：逐层操作
-      // 1) 覆盖层开着 → 关闭
-      var overlay = document.getElementById('page-overlay');
-      if (overlay && overlay.classList.contains('open')) {
-        window.closePage();
-        return;
-      }
-      // 2) 信息面板开着 → 关闭
-      var panelEl = document.getElementById('info-panel');
-      if (panelEl && panelEl.classList.contains('open')) {
-        panelEl.classList.remove('open');
-        setTimeout(function () { if (!panelEl.classList.contains('open')) panelEl.style.display = 'none'; }, 300);
-        return;
-      }
-      // 3) 开始页面还在 → 点击进入
-      var landing = document.getElementById('landing');
-      if (landing && landing.style.display !== 'none') {
-        landing.click();
-        return;
-      }
-      // 4) 默认：选中当前前方卡片
-      var frontEl = document.querySelector('.ring-item[data-side="front"]');
-      if (!frontEl || isSwitching) return;
-      var idx = parseInt(frontEl.dataset.index, 10);
-      var item = menuItems[idx];
-      if (item.page) {
-        window.openPage(item.page);
-      } else if (item.link) {
-        window.open(item.link, '_blank');
-      }
     } else if (e.key === 'Escape') {
-      // 逐层退出
       if (window.closePage) window.closePage();
       var panelEl = document.getElementById('info-panel');
       if (panelEl && panelEl.classList.contains('open')) {

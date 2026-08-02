@@ -221,3 +221,129 @@ html, body {
   line-height: 1.8;
   text-align: justify;
 }
+
+/* ======================================== */
+/* ---- 波普漫画风开始页面 ---- */
+/* ======================================== */
+#landing {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* 半调网点背景 */
+.landing-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, #e8e8e8 1px, transparent 1px);
+  background-size: 18px 18px;
+  opacity: 0.6;
+}
+
+/* 漫画爆炸装饰 */
+.comic-burst {
+  position: absolute;
+  top: 8%;
+  right: 10%;
+  width: 140px;
+  height: 140px;
+  background: #ff3030;
+  clip-path: polygon(
+    50% 0%, 61% 15%, 75% 5%, 78% 22%, 95% 18%,
+    88% 35%, 100% 45%, 90% 55%, 100% 68%, 85% 70%,
+    88% 85%, 70% 78%, 62% 95%, 50% 80%, 38% 95%,
+    30% 78%, 12% 85%, 15% 70%, 0% 68%, 10% 55%,
+    0% 45%, 12% 35%, 5% 18%, 22% 22%, 25% 5%,
+    39% 15%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: burst-pulse 2s ease-in-out infinite;
+}
+.comic-burst span {
+  font-size: 16px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transform: rotate(-5deg);
+}
+@keyframes burst-pulse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.08) rotate(3deg); }
+}
+
+/* 主标题 */
+.landing-title {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+.landing-title h1 {
+  font-size: clamp(36px, 8vw, 72px);
+  font-weight: 900;
+  color: #000;
+  line-height: 1.3;
+  letter-spacing: 4px;
+  /* 波普漫画风：黑描边 + 白色填充 + 彩色阴影 */
+  -webkit-text-stroke: 2px #000;
+  text-shadow:
+    4px 4px 0 #ff3030,
+    8px 8px 0 rgba(255, 48, 48, 0.3),
+    12px 12px 0 rgba(255, 48, 48, 0.15);
+}
+.landing-title .title-accent {
+  color: #ff3030;
+  -webkit-text-stroke: 2px #000;
+}
+
+/* 提示文字 */
+.landing-hint {
+  position: relative;
+  z-index: 2;
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.hint-arrow {
+  font-size: 20px;
+  color: #000;
+  animation: hint-bounce 1.5s ease-in-out infinite;
+}
+.landing-hint span {
+  font-size: 14px;
+  font-weight: 700;
+  color: #555;
+  letter-spacing: 3px;
+}
+@keyframes hint-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* 漫画速度线 */
+.speed-lines {
+  position: absolute;
+  width: 80px;
+  height: 60%;
+  top: 20%;
+  opacity: 0.15;
+  background: repeating-linear-gradient(
+    90deg,
+    #000 0px, #000 2px,
+    transparent 2px, transparent 8px
+  );
+}
+.speed-lines-left { left: 3%; }
+.speed-lines-right { right: 3%; transform: scaleX(-1); }

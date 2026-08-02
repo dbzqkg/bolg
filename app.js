@@ -4,6 +4,77 @@
 (function () {
   'use strict';
 
+  // ---------- 开始页面动画 ----------
+  (function () {
+    var landing = document.getElementById('landing');
+    if (!landing) return;
+    var entered = false;
+
+    landing.addEventListener('click', function () {
+      if (entered) return;
+      entered = true;
+
+      gsap.to(landing, {
+        yPercent: -100,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power4.inOut',
+        onComplete: function () {
+          landing.style.display = 'none';
+        }
+      });
+
+      // 3D场景从下方滑入 + 缩放
+      gsap.from('#scene', {
+        y: 80,
+        opacity: 0,
+        scale: 0.92,
+        duration: 1,
+        ease: 'power3.out',
+        delay: 0.2
+      });
+
+      // 中心图片弹入
+      gsap.from('#center-image', {
+        y: 60,
+        opacity: 0,
+        scale: 0.8,
+        duration: 0.7,
+        ease: 'back.out(1.7)',
+        delay: 0.3
+      });
+
+      // 选项卡片依次弹入
+      gsap.from('.ring-item .card', {
+        y: 100,
+        opacity: 0,
+        scale: 0.5,
+        rotation: 15,
+        stagger: 0.1,
+        duration: 0.6,
+        ease: 'back.out(2)',
+        delay: 0.4
+      });
+
+      // 小图标弹入
+      gsap.from('#info-toggle', {
+        y: 60,
+        opacity: 0,
+        scale: 0,
+        rotation: 360,
+        duration: 0.7,
+        ease: 'back.out(2)',
+        delay: 0.6
+      });
+    });
+  })();
+
+  // ---------- 初始化 3D 场景状态 ----------
+  gsap.set('#scene', { opacity: 0 });
+  gsap.set('#center-image', { opacity: 0 });
+  gsap.set('.ring-item .card', { opacity: 0 });
+  gsap.set('#info-toggle', { opacity: 0 });
+
   // ---------- 禁止浏览器缩放 ----------
   document.addEventListener('keydown', function(e) {
     if (e.ctrlKey && (e.key === '=' || e.key === '-' || e.key === '0' || e.key === '+' || e.key === 'NumpadAdd' || e.key === 'NumpadSubtract')) {

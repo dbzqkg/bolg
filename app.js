@@ -115,9 +115,10 @@
     const r = rawItems[i] || {};
     menuItems.push({
       label: r.label || DEFAULT_LABELS[i],
-      link: r.link || DEFAULT_LINK,
+      link: r.link || '',
       image: r.image || '',
-      angle: r.angle != null ? r.angle : i * 90
+      angle: r.angle != null ? r.angle : i * 90,
+      page: r.page || ''
     });
   }
 
@@ -206,8 +207,13 @@
       card.style.backgroundColor = '#fff';
       card.style.filter = 'grayscale(1) contrast(1.6)';
     });
-    card.addEventListener('click', function () {
-      if (item.link) window.open(item.link, '_blank');
+    card.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (item.page) {
+        window.openPage(item.page);
+      } else if (item.link) {
+        window.open(item.link, '_blank');
+      }
     });
   });
 
@@ -308,6 +314,50 @@
     calcRadius();
     updatePositions();
   });
+
+  // ---------- 页面覆盖层 ----------
+  (function () {
+    var overlay = document.getElementById('page-overlay');
+    if (!overlay) return;
+    var closeBtn = overlay.querySelector('.overlay-close');
+    var titleEl = overlay.querySelector('.overlay-title');
+    var subtitleEl = overlay.querySelector('.overlay-subtitle');
+    var imgWrap = overlay.querySelector('.overlay-img');
+    var imgEl = imgWrap.querySelector('img');
+    var pagesCfg = cfg.pages || {};
+
+    function openPage(pageKey) {
+      var pageData = pagesCfg[pageKey];
+      if (!pageData) return;
+
+      titleEl.textContent = pageData.title;
+      subtitleEl.textContent = pageData.subtitle || '';
+
+      if (pageData.image) {
+        imgEl.src = resolvePath(pageData.image);
+        imgEl.alt = pageData.title;
+        imgWrap.style.display = 'block';
+      } else {
+        imgWrap.style.display = 'none';
+      }
+
+      overlay.style.display = 'block';
+      requestAnimationFrame(function () {
+        overlay.classList.add('open');
+      });
+    }
+
+    function closePage() {
+      overlay.classList.remove('open');
+      setTimeout(function () { overlay.style.display = 'none'; }, 300);
+    }
+
+    closeBtn.addEventListener('click', closePage);
+
+    // 暴露给外部调用
+    window.openPage = openPage;
+    window.closePage = closePage;
+  })();
 
   // ---------- 右下角信息面板 ----------
   (function () {

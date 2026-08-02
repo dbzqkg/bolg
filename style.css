@@ -44,13 +44,13 @@ html, body {
 }
 
 #center-image img {
-  max-width: 882px; max-height: 1175px;
+  max-width: 970px; max-height: 1293px;
   width: auto; height: auto;
   object-fit: contain;
 }
 
 #center-image .placeholder {
-  width: 734px; height: 1028px;
+  width: 807px; height: 1131px;
   border: 3px dashed #aaa; border-radius: 16px;
   display: flex; align-items: center; justify-content: center;
   color: #bbb; font-size: 14px; text-align: center; line-height: 1.8;
@@ -254,40 +254,6 @@ html, body {
   opacity: 0.6;
 }
 
-/* 漫画爆炸装饰 */
-.comic-burst {
-  position: absolute;
-  top: 8%;
-  right: 10%;
-  width: 140px;
-  height: 140px;
-  background: #ff3030;
-  clip-path: polygon(
-    50% 0%, 61% 15%, 75% 5%, 78% 22%, 95% 18%,
-    88% 35%, 100% 45%, 90% 55%, 100% 68%, 85% 70%,
-    88% 85%, 70% 78%, 62% 95%, 50% 80%, 38% 95%,
-    30% 78%, 12% 85%, 15% 70%, 0% 68%, 10% 55%,
-    0% 45%, 12% 35%, 5% 18%, 22% 22%, 25% 5%,
-    39% 15%
-  );
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: burst-pulse 2s ease-in-out infinite;
-}
-.comic-burst span {
-  font-size: 16px;
-  font-weight: 900;
-  color: #fff;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  transform: rotate(-5deg);
-}
-@keyframes burst-pulse {
-  0%, 100% { transform: scale(1) rotate(0deg); }
-  50% { transform: scale(1.08) rotate(3deg); }
-}
-
 /* 主标题 */
 .landing-title {
   position: relative;
@@ -353,3 +319,83 @@ html, body {
 }
 .speed-lines-left { left: 3%; }
 .speed-lines-right { right: 3%; transform: scaleX(-1); }
+
+/* ---- 文章页面覆盖层 ---- */
+#page-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: #f0f0eb;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+#page-overlay.open {
+  display: block;
+  opacity: 1;
+}
+
+.overlay-close {
+  position: absolute;
+  top: 24px; left: 24px;
+  z-index: 100;
+  width: 48px; height: 48px;
+  background: #fff;
+  border: 4px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.overlay-close:hover {
+  transform: scale(1.1);
+  box-shadow: 6px 6px 0 #000;
+}
+.overlay-close::before, .overlay-close::after {
+  content: '';
+  position: absolute;
+  width: 18px; height: 3px;
+  background: #000;
+  border-radius: 2px;
+}
+.overlay-close::before { transform: translate(-3px, 0) rotate(45deg); }
+.overlay-close::after  { transform: translate(-3px, 0) rotate(-45deg); }
+
+.overlay-title-wrap {
+  position: fixed;
+  left: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.overlay-title {
+  font-size: clamp(32px, 6vw, 64px);
+  font-weight: 900;
+  color: #000;
+  -webkit-text-stroke: 1.5px #000;
+  text-shadow:
+    3px 3px 0 #ff3030,
+    6px 6px 0 rgba(255, 48, 48, 0.2);
+  letter-spacing: 6px;
+  margin: 0;
+}
+.overlay-subtitle {
+  margin-top: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #555;
+  letter-spacing: 2px;
+}
+
+.overlay-img {
+  position: fixed;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%) scale(1.2);
+  max-height: 85vh;
+}
+.overlay-img img {
+  display: block;
+  max-width: 70vw;
+  max-height: 85vh;
+  object-fit: contain;
+}

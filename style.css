@@ -20,6 +20,8 @@ html, body {
   /* CSS 3D 透视 */
   perspective: 1000px;
   perspective-origin: 50% 50%;
+  /* 初始隐藏，等开始页面动画 */
+  opacity: 0;
 }
 
 #ring-world {
@@ -38,6 +40,7 @@ html, body {
   display: flex; align-items: center; justify-content: center;
   pointer-events: none;
   /* 已移除背景色和圆角 */
+  opacity: 0;
 }
 
 #center-image img {
@@ -78,6 +81,8 @@ html, body {
 }
 
 .ring-item .card {
+  /* 初始隐藏，等开始页面动画 */
+  opacity: 0;
   width: var(--item-w, 210px);
   height: var(--item-h, 63px);
   display: flex; align-items: center; justify-content: center;
@@ -141,6 +146,7 @@ html, body {
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   transition: box-shadow 0.15s ease;
+  opacity: 0;
 }
 #info-toggle:hover {
   transform: scale(1.1);

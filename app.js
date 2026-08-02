@@ -64,7 +64,9 @@
         });
       }
       animateCards();
-    });
+    }
+
+    landing.addEventListener('click', doEnter);
 
     document.addEventListener('keydown', function (e) {
       if (e.key === ' ' || e.key === 'Enter') {

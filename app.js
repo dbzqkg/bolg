@@ -329,6 +329,14 @@
       } else if (item.link) {
         window.open(item.link, '_blank');
       }
+    } else if (e.key === 'Escape') {
+      // 逐层退出：先关覆盖层，再关面板
+      if (window.closePage) window.closePage();
+      var panelEl = document.getElementById('info-panel');
+      if (panelEl && panelEl.classList.contains('open')) {
+        panelEl.classList.remove('open');
+        setTimeout(function () { if (!panelEl.classList.contains('open')) panelEl.style.display = 'none'; }, 300);
+      }
     }
   });
 

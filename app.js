@@ -317,6 +317,18 @@
     } else if (e.key === 'ArrowRight') {
       e.preventDefault();
       snapRotate(currentRotation + 90);
+    } else if (e.key === ' ' || e.key === 'Enter') {
+      // 空格/回车：选中当前前方卡片
+      var frontEl = document.querySelector('.ring-item[data-side="front"]');
+      if (!frontEl || isSwitching) return;
+      e.preventDefault();
+      var idx = parseInt(frontEl.dataset.index, 10);
+      var item = menuItems[idx];
+      if (item.page) {
+        window.openPage(item.page);
+      } else if (item.link) {
+        window.open(item.link, '_blank');
+      }
     }
   });
 

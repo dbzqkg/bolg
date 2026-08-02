@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>个人博客</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="bg"></div>
+
+  <!-- 3D 场景：CSS 3D 空间 -->
+  <div id="scene">
+    <div id="ring-world">
+      <!-- 中心图片（z-index 固定中间层） -->
+      <div id="center-image"></div>
+      <!-- 选项卡片（由 JS 动态生成） -->
+      <div id="ring"></div>
+    </div>
+  </div>
+
+  <!-- 右下角展开面板 -->
+  <div id="info-toggle"></div>
+  <div id="info-panel">
+    <div class="panel-close"></div>
+    <div class="panel-icon"></div>
+    <div class="panel-title"></div>
+    <div class="panel-content"></div>
+  </div>
+
+  <!-- GSAP 核心动画库 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

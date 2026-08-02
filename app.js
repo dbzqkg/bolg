@@ -309,6 +309,58 @@
     snapRotate(currentRotation + dir);
   }, { passive: false });
 
+  // ---------- 触屏滑动切换环（手机端） ----------
+  (function () {
+    var touchStartX = 0;
+    var touchStartY = 0;
+    var isSwiping = false;
+
+    sceneEl.addEventListener('touchstart', function (e) {
+      var touch = e.touches[0];
+      if (!isMouseOnRing(touch.clientX, touch.clientY)) return;
+      if (e.target.closest('#info-panel') || e.target.closest('.overlay-close') || e.target.closest('#info-toggle')) return;
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+      isSwiping = true;
+    }, { passive: true });
+
+    sceneEl.addEventListener('touchmove', function (e) {
+      if (!isSwiping) return;
+    }, { passive: true });
+
+    sceneEl.addEventListener('touchend', function (e) {
+      if (!isSwiping) return;
+      isSwiping = false;
+
+      var touch = e.changedTouches[0];
+      var dx = touch.clientX - touchStartX;
+      var dy = touch.clientY - touchStartY;
+
+      // 水平滑动为主，忽略纯垂直滑动
+      if (Math.abs(dx) < 30) return;
+      if (Math.abs(dy) > Math.abs(dx) * 1.5) return;
+
+      var dir = dx < 0 ? 90 : -90;
+      snapRotate(currentRotation + dir);
+    }, { passive: true });
+  })();
+
+  // ---------- 触屏卡片 touch-active 效果 ----------
+  (function () {
+    document.addEventListener('touchstart', function (e) {
+      var card = e.target.closest('.ring-item .card');
+      if (!card) return;
+      card.classList.add('touch-active');
+    }, { passive: true });
+    document.addEventListener('touchend', function (e) {
+      var card = e.target.closest('.ring-item .card');
+      if (!card) return;
+      setTimeout(function () {
+        card.classList.remove('touch-active');
+      }, 150);
+    }, { passive: true });
+  })();
+
   // ---------- 窗口缩放 ----------
   window.addEventListener('resize', function () {
     calcRadius();

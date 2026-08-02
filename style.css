@@ -399,3 +399,180 @@ html, body {
   max-height: 85vh;
   object-fit: contain;
 }
+
+/* ======================================== */
+/* ---- 手机端响应式适配 ---- */
+/* ======================================== */
+@media (max-width: 768px) {
+  /* 3D 环选项卡片缩小 */
+  .ring-item .card {
+    --item-w: 160px;
+    --item-h: 50px;
+    width: var(--item-w, 160px);
+    height: var(--item-h, 50px);
+    border-width: 3px;
+    box-shadow: 6px 6px 0 #000;
+    padding: 6px 16px;
+    gap: 8px;
+  }
+  .ring-item .card img {
+    height: 30px; width: 30px;
+    border-width: 2px;
+  }
+  .ring-item .card .label {
+    font-size: 16px;
+    letter-spacing: 3px;
+    -webkit-text-stroke: 0.5px #000;
+  }
+
+  /* 触屏 hover 高亮替代方案 */
+  #scene.on-ring .ring-item[data-side="front"] .card,
+  .ring-item .card.touch-active {
+    box-shadow: 12px 12px 0 #000;
+    transform: skewX(-12deg) scale(1.08);
+  }
+
+  /* 中心图片缩小 */
+  #center-image img {
+    max-width: 85vw;
+    max-height: 50vh;
+  }
+  #center-image .placeholder {
+    width: 85vw;
+    height: auto;
+    padding: 20px;
+  }
+
+  /* 右下角按钮缩小 */
+  #info-toggle {
+    bottom: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border-width: 3px;
+    box-shadow: 3px 3px 0 #000;
+  }
+  #info-toggle .toggle-plus {
+    font-size: 22px;
+  }
+
+  /* 信息面板适配 */
+  #info-panel {
+    width: calc(100vw - 32px);
+    max-height: 70vh;
+    left: 16px !important;
+    right: 16px !important;
+    bottom: 16px !important;
+    top: auto !important;
+    border-width: 3px;
+    box-shadow: 8px 8px 0 #000;
+    padding: 20px 16px 16px;
+  }
+  .panel-icon {
+    width: 44px;
+    height: 44px;
+  }
+  .panel-title {
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+  .panel-content {
+    font-size: 13px;
+  }
+
+  /* 覆盖层改为上下堆叠布局 */
+  .overlay-title-wrap {
+    position: fixed;
+    left: 5%;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-70%);
+    text-align: center;
+  }
+  .overlay-title {
+    font-size: clamp(24px, 7vw, 40px);
+    letter-spacing: 3px;
+  }
+  .overlay-subtitle {
+    font-size: 14px;
+  }
+  .overlay-img {
+    right: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -10%) scale(1);
+    max-height: 55vh;
+    text-align: center;
+  }
+  .overlay-img img {
+    max-width: 90vw;
+    max-height: 55vh;
+  }
+
+  /* 关闭按钮缩小 */
+  .overlay-close {
+    top: 16px;
+    left: 16px;
+    width: 36px;
+    height: 36px;
+    border-width: 3px;
+    box-shadow: 3px 3px 0 #000;
+  }
+  .overlay-close::before, .overlay-close::after {
+    width: 14px;
+    height: 2.5px;
+  }
+
+  /* 开始页面文字调整 */
+  .landing-title h1 {
+    -webkit-text-stroke: 1.5px #000;
+    text-shadow:
+      3px 3px 0 #ff3030,
+      6px 6px 0 rgba(255, 48, 48, 0.3),
+      9px 9px 0 rgba(255, 48, 48, 0.15);
+  }
+  .speed-lines {
+    width: 40px;
+    opacity: 0.1;
+  }
+  .landing-hint span {
+    font-size: 13px;
+  }
+}
+
+/* 小屏手机进一步优化 */
+@media (max-width: 480px) {
+  .ring-item .card {
+    --item-w: 130px;
+    --item-h: 42px;
+    width: var(--item-w, 130px);
+    height: var(--item-h, 42px);
+    border-width: 2.5px;
+    box-shadow: 4px 4px 0 #000;
+    padding: 4px 12px;
+    gap: 6px;
+  }
+  .ring-item .card img {
+    height: 24px;
+    width: 24px;
+    border-width: 1.5px;
+  }
+  .ring-item .card .label {
+    font-size: 13px;
+    letter-spacing: 2px;
+    -webkit-text-stroke: 0.4px #000;
+  }
+
+  #center-image img {
+    max-width: 90vw;
+    max-height: 40vh;
+  }
+
+  .overlay-title {
+    font-size: 24px;
+  }
+  .overlay-img img {
+    max-width: 95vw;
+    max-height: 50vh;
+  }
+}

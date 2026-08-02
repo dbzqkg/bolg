@@ -309,6 +309,17 @@
     snapRotate(currentRotation + dir);
   }, { passive: false });
 
+  // ---------- 键盘左右键切换环 ----------
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      snapRotate(currentRotation - 90);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      snapRotate(currentRotation + 90);
+    }
+  });
+
   // ---------- 触屏滑动切换环（手机端） ----------
   (function () {
     var touchStartX = 0;
